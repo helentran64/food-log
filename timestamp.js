@@ -3,7 +3,7 @@ const welcomeMessages = ["Good morning,", "Good afternoon,", "Good evening,"];
 
 let welcome = "";
 
-if (hour < 12){ 
+if (time < 12){ 
     welcome = welcomeMessages[0];
 }
 else if (time < 18){ 

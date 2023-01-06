@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracker</title>
+    <title>Food Log</title>
+    <link rel="icon" href="./Images/favicon.ico">
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +22,31 @@
         <div>
             <p id="greeting"></p>
             <?php
-                #make cookie to save name
                 $name = $_POST["name"];
-                echo "<p id='greetName'> Hello, " . $name . "! This is your " . "<span id='foodLogTitle'>Food log:</span>" . "</p>";
+                #cookie will save the user's name
+                session_start();
+                $setName = "username";
+                $name_value = $name;
+                setcookie($setName, $name_value, time()+12*60*60,"/");
+
+                if (isset($_COOKIE[$setName])){
+                    $cookieName = $_COOKIE[$setName];
+                    setcookie($setName, $cookieName);
+                    echo "<p id='greetName'> Hello, " . $cookieName . "! This is your " . "<span id='foodLogTitle'>Food log:</span>" . "</p>";
+                }
+                else{
+                    $cookieName = $name;
+                    setcookie($setName, $cookieName);
+                    $_COOKIE[$setName] = $cookieName;
+                    echo "<p id='greetName'> Hello, " . $cookieName . "! This is your " . "<span id='foodLogTitle'>Food log:</span>" . "</p>";
+                }
             ?>
         </div>
 
         <div>
             <div class="foodForm">
-                <form action="" method="post">
+                <form name="foodLog" action="" method="post">
+                    <p id="foodNameErrorMessage"></p>
                     <label class="foodInput" for="type">Type:</label>
                     <select class="foodInputLength" id="type" name="type">
                         <option value="breakfast">Breakfast</option>
@@ -42,23 +59,62 @@
                     <label class="foodInput" for="foodName">Enter food/drink</label>
                     <input class="foodInputLength" type="text" id="foodName" name="foodName" placeholder="e.g., apple">
                     <br>
-                    <label class="foodInput" for="macros">Macronutrients</label>
-                    <select class="foodInputLength" name="macros" id="macros">
-                        <option value="carbohydrates">Carbohydrates</option>
-                        <option value="proteins">Proteins</option>
-                        <option value="fats">Fats</option>
-                    </select>
-                    <br>
-                    <label class="foodInput" for="measurement">Measurement</label>
-                    <input class="foodInputLength" type="text" id="measurement" name="measurement" placeholder="e.g., 100g or 100oz">
-                    <div class="registrationElements buttonPosition">
-                        <button style="color:white" class="btn btn-4" type="submit" name="submit" id="sumbit" onclick="return isEmpty()">Add</button>
-                    <script src="./isEmpty.js"></script>
+                    <label class="foodInput" for="carbohydrates">Carbohydrates</label>
+                    <input class="foodInputLength" type="text" id="carbohydrates" name="carbohydrates" placeholder="e.g., 100g">
+                    <label class="foodInput" for="proteins">Proteins</label>
+                    <input class="foodInputLength" type="text" id="proteins" name="proteins" placeholder="e.g., 100g">
+                    <label class="foodInput" for="fats">Fats</label>
+                    <input class="foodInputLength" type="text" id="fats" name="fats" placeholder="e.g., 100g">
+                    <label class="foodInput" for="water">Water (if applicable)</label>
+                    <input class="foodInputLength" type="text" id="water" name="water" placeholder="e.g., 100ml">
+                    <div class="registrationElements buttonPosition addButton">
+                        <button style="color:white" class="btn btn-4" type="submit" name="add" id="add" onclick="return isLogEmpty()">Add</button>
+                        <script src="./isEmpty.js"></script>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="timestamp.js"></script>
+
+    <div id=results>
+        <?php
+            if (isset($_POST["add"])) {
+                #getting the different types
+                $type = $_POST["type"];
+                
+                #storing foods in each type
+                $breakfastLog = array();
+                $lunchLog = array();
+                $dinnerLog = array();
+                $snackLog = array();
+                $waterLog = array();
+
+                if ($type == "breakfast"){
+                    array_push($breakfastLog, $_POST["foodName"]);
+                }
+                elseif ($type == "lunch"){
+                    array_push($lunchLog, $_POST["foodName"]);
+                }
+                elseif ($type == "dinner"){
+                    array_push($dinnerLog, $_POST["foodName"]);
+                }
+                elseif ($type == "snack"){
+                    array_push($snackLog, $_POST["foodName"]);
+                }
+                else{
+                    array_push($waterLog, $_POST["foodName"]);
+                }
+
+                $typeArray = array($breakfastLog, $lunchLog, $dinnerLog, $snackLog, $waterLog);
+                foreach ($typeArray as $value){
+                    echo '<pre>'; print_r($value); echo '</pre>';
+                }
+            }
+            else{
+                echo "<p id='blankLog'>Please add to your food log to see results!</p>";
+            }
+        ?>
+    </div>
+    <script src="./timestamp.js"></script>
 </body>
 </html>

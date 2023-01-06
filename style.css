@@ -144,9 +144,61 @@ select.foodInputLength{
     padding: 2px 4px;
 }
 
-input[type=text]#measurement,  input[type=text]#foodName{
+input[type=text]#carbohydrates, input[type=text]#proteins, input[type=text]#fats, input[type=text]#water, input[type=text]#foodName{
     border: 2px solid #ccc;
     border-radius: 5px;
     outline: none;
     padding: 1px 4px;
+}
+
+.addButton{
+    padding: 20px;
+}
+
+#results{
+    box-shadow: 0px 0px 10px rgb(188, 188, 188);
+    width: 100%;
+    height: 50vh;
+}
+
+#blankLog{
+    text-align: center;
+    padding: 50px;
+}
+
+#foodNameErrorMessage{
+    color: red;
+    padding-left: 10px;
+}
+
+/* Media queries */
+@media screen and (max-width: 1200px){
+    #descriptionBox{
+        width: 80%;
+    }
+
+    #registration{
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 900px){
+    label.foodInput{
+        width: 100%;
+        padding: 10px 0px;
+    }
+
+    #greetName{
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    #descriptionBox{
+        width: 100%;
+    }
+
+    #registration{
+        width: 85%;
+    }
 }

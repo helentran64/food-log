@@ -1,0 +1,152 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+header{
+    font-size: 1em;
+    background-color: white;
+    color:black;
+    padding: 30px 60px;
+    box-shadow: 0px 0px 10px rgb(188, 188, 188);
+}
+
+.automator{
+    color: #ff7723;
+}
+
+/* First Page */
+#descriptionBox{
+    padding: 50px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#descriptionBox h1{
+    font-size: 3.5em;
+    font-weight: 700;
+    text-align: center;
+    text-transform: capitalize;
+    padding-bottom: 20px;
+    background-color: white;
+    background-image: linear-gradient(45deg, #ff7723, rgb(255, 210, 63));
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+#registration{
+    border: 1px rgb(255, 255, 255) solid;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px #c3c3c3;
+    width: 45%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.registrationName{
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.registrationElements{
+    padding-bottom: 10px;
+}
+
+.labelName{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type=text]#name {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    padding: 3px 10px;
+}
+
+input[type=text]#name:focus{
+    border: 2px solid #555;
+}
+
+input#name{
+    width: 100%;
+}
+
+::placeholder{
+    padding-left: 0px;
+    font-size: 14px;
+}
+
+.buttonPosition{
+    text-align: center;
+}
+
+.btn {
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    border-radius: 10px;
+}
+
+.btn-4 {
+    background-image: linear-gradient(to right, #ff7723 0%, rgb(255, 210, 63) 51%, rgb(255, 210, 63) 100%);
+}
+
+/* Second Page */
+#greetName{
+    font-size: 30px;
+}
+
+#foodLogTitle{
+    font-size: 30px;
+    color: rgb(255, 102, 0);
+}
+
+.foodFormDivision{
+    background-color: red;
+    padding-bottom: 10px;
+}
+
+.foodForm{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label.foodInput{
+    display: inline-block;
+    width: 50%;
+    padding: 10px;
+}
+
+.foodInputLength{
+    width: 250px;
+}
+
+select.foodInputLength{
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 2px 4px;
+}
+
+input[type=text]#measurement,  input[type=text]#foodName{
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    padding: 1px 4px;
+}

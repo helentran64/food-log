@@ -68,52 +68,60 @@
                     <label class="foodInput" for="water">Water (if applicable)</label>
                     <input class="foodInputLength" type="text" id="water" name="water" placeholder="e.g., 100ml">
                     <div class="registrationElements buttonPosition addButton">
-                        <button style="color:white" class="btn btn-4" type="submit" name="add" id="add" onclick="return isLogEmpty()">Add</button>
+                        <button style="color:white" class="btn btn-4" type="button" name="add" id="add" onclick="log();">Add</button>
                         <script src="./isEmpty.js"></script>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+    
     <div id=results>
-        <?php
-            if (isset($_POST["add"])) {
-                #getting the different types
-                $type = $_POST["type"];
-                
-                #storing foods in each type
-                $breakfastLog = array();
-                $lunchLog = array();
-                $dinnerLog = array();
-                $snackLog = array();
-                $waterLog = array();
-
-                if ($type == "breakfast"){
-                    array_push($breakfastLog, $_POST["foodName"]);
+        <p id=breakfastLog></p>
+        <script>
+            function log(){
+                const breakfastFoods = [];
+                const lunchFoods = [];
+                const dinnerFoods = [];
+                const snackFoods = [];
+                const waterCount = [];
+                if (document.getElementById("type").value == "breakfast"){
+                    breakfastFoods.push(document.getElementById("foodName").value);
                 }
-                elseif ($type == "lunch"){
-                    array_push($lunchLog, $_POST["foodName"]);
+                else if (document.getElementById("type").value == "lunch"){
+                    lunchFoods.push(document.getElementById("foodName").value)
                 }
-                elseif ($type == "dinner"){
-                    array_push($dinnerLog, $_POST["foodName"]);
+                else if (document.getElementById("type").value == "dinner"){
+                    dinnerFoods.push(document.getElementById("foodName").value)
                 }
-                elseif ($type == "snack"){
-                    array_push($snackLog, $_POST["foodName"]);
+                else if (document.getElementById("type").value == "snack"){
+                    snackFoods.push(document.getElementById("foodName").value)
                 }
-                else{
-                    array_push($waterLog, $_POST["foodName"]);
+        
+                for (i = 0; i < breakfastFoods.length; i++){
+                    console.log("breakfast " + breakfastFoods[i]);
                 }
-
-                $typeArray = array($breakfastLog, $lunchLog, $dinnerLog, $snackLog, $waterLog);
-                foreach ($typeArray as $value){
-                    echo '<pre>'; print_r($value); echo '</pre>';
+                for (i = 0; i < lunchFoods.length; i++){
+                    console.log("lunch " + lunchFoods[i]);
                 }
+                for (i = 0; i < dinnerFoods.length; i++){
+                    console.log("dinner " + dinnerFoods[i]);
+                }
+                for (i = 0; i < snackFoods.length; i++){
+                    console.log("snack " + snackFoods[i]);
+                }
+                macros();
+                //document.getElementById("breakfastLog").innerHTML = document.getElementById("foodName").value;
             }
-            else{
-                echo "<p id='blankLog'>Please add to your food log to see results!</p>";
+
+            function macros(){
+                let carbs = 0;
+                let pro = 0;
+                let fats = 0;
+                let total = 0;
             }
-        ?>
+        </script>
+        
     </div>
     <script src="./timestamp.js"></script>
 </body>
